@@ -21,25 +21,8 @@ builds:
       - CGO_ENABLED=0
     goos:
       - linux
-      - darwin
-      - windows
     goarch:
       - amd64
-      - arm
-      - arm64
-    goarm:
-      - "6"
-    ignore:
-      - goos: windows
-        goarch: arm
-      - goos: windows
-        goarch: arm64
-    overrides:
-      - goos: windows
-        goarch: amd64
-        flags:
-          - -trimpath
-          - -tags=release,timetzdata
 
 env:
   - CGO_ENABLED=0
