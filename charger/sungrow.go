@@ -263,6 +263,11 @@ func (wb *Sungrow) Phases1p3p(phases int) error {
 	}
 
 	return whenDisabled(wb, func() error {
+		// Wait 5 seconds before switching phases
+		// The SH10RT implementation does not disable the charger for phase switching. 
+		// If it does disable the charger it sets the phases back to 3 after waiting for state completed, which takes 2-3s on the AC022-1E.
+		time.Sleep(5 * time.Second)
+		
 		// Switch phases
 		_, err := wb.conn.WriteSingleRegister(sgRegPhaseSwitch, u)
 		return err
